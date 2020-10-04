@@ -8,6 +8,6 @@ type Server struct {
 	*mux.Router
 }
 
-type IndexPage struct {
+type Page struct {
 	Title string
 }

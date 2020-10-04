@@ -20,6 +20,7 @@ func NewServer() *Server {
 
 func (s *Server) routes() {
 	s.HandleFunc("/", s.indexPage()).Methods("GET")
+	s.HandleFunc("/login", s.loginPage()).Methods("GET")
 }
 
 func (s *Server) indexPage() http.HandlerFunc {
@@ -29,10 +30,10 @@ func (s *Server) indexPage() http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
-		p := IndexPage{
+		p := Page{
 			Title: "Index",
 		}
-		t, err := template.ParseFiles(filepath.Join(wd + "/cmd/templates/upload.html"))
+		t, err := template.ParseFiles(filepath.Join(wd + "/web/templates/upload.html"))
 		if err != nil {
 			panic(err)
 		}

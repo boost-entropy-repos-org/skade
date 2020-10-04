@@ -1,18 +1,9 @@
 package main
 
 import (
-	"github.com/Mindslave/skade/cmd"
+	"github.com/Mindslave/skade/internal"
 	"net/http"
 )
-
-var (
-	wd  string
-	err error
-)
-
-type IndexPage struct {
-	Title string
-}
 
 func main() {
 	srv := cmd.NewServer()
