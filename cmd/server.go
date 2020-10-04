@@ -10,17 +10,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func main() {
-}
-
-type Server struct {
-	*mux.Router
-}
-
-type IndexPage struct {
-	Title string
-}
-
 func NewServer() *Server {
 	s := &Server{
 		Router: mux.NewRouter(),
