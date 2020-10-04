@@ -1,7 +1,6 @@
-package cmd
+package server
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -21,10 +20,10 @@ func NewServer() *Server {
 func (s *Server) routes() {
 	s.HandleFunc("/", s.indexPage()).Methods("GET")
 	s.HandleFunc("/login", s.loginPage()).Methods("GET")
+	s.HandleFunc("/home", s.homePage()).Methods("GET")
 }
 
 func (s *Server) indexPage() http.HandlerFunc {
-	fmt.Println("this happens")
 	return func(w http.ResponseWriter, r *http.Request) {
 		wd, err := os.Getwd()
 		if err != nil {
@@ -34,6 +33,28 @@ func (s *Server) indexPage() http.HandlerFunc {
 			Title: "Index",
 		}
 		t, err := template.ParseFiles(filepath.Join(wd + "/web/templates/upload.html"))
+		if err != nil {
+			panic(err)
+		}
+		t.Execute(w, p)
+	}
+}
+
+func (s *Server) homePage() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		wd, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		p := Page{
+			Title: "Index",
+		}
+
+		files := []string{
+			filepath.Join(wd + "/web/templates/test.html"),
+			filepath.Join(wd + "/web/templates/base.html"),
+		}
+		t, err := template.ParseFiles(files...)
 		if err != nil {
 			panic(err)
 		}

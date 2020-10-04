@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/Mindslave/skade/internal"
+	"github.com/Mindslave/skade/internal/server"
 	"net/http"
 )
 
 func main() {
-	srv := cmd.NewServer()
+	srv := server.NewServer()
 	http.ListenAndServe(":8080", srv)
 }
