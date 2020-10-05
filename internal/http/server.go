@@ -1,12 +1,11 @@
 package server
 
 import (
+	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/gorilla/mux"
 )
 
 func NewServer() *Server {
