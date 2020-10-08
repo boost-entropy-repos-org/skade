@@ -3,6 +3,7 @@ package engine
 import (
 	"errors"
 	"log"
+	"os"
 )
 
 var (
@@ -23,6 +24,7 @@ func NewAnalysisService(reportStorage ReportStorage) AnalysisService {
 func (a *analysisService) Scan(FileName string) (*Report, error) {
 	testfile := "/home/marius/test.exe"
 
+	// reading the file
 	file, err := os.Open(testfile)
 	if err != nil {
 		log.Fatal("Could not open file: ")
