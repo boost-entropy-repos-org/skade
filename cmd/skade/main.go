@@ -1,8 +1,7 @@
 package main
 
 import (
-	"github.com/Mindslave/skade/internal/database"
-	"github.com/Mindslave/skade/internal/server"
+	"github.com/Mindslave/skade/internal/http"
 	"net/http"
 )
 

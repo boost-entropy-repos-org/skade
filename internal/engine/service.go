@@ -1,5 +1,5 @@
 package engine
 
-type MalwareAnalysis interface {
+type AnalysisService interface {
 	Scan(fileName string) (*Report, error)
 }

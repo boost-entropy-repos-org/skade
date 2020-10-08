@@ -13,7 +13,7 @@ type analysisService struct {
 	reportStorage ReportStorage
 }
 
-func NewAnalysisService(reportStorage ReportStorage) MalwareAnalysis {
+func NewAnalysisService(reportStorage ReportStorage) AnalysisService {
 	return &analysisService{
 		reportStorage,
 	}
