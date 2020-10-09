@@ -8,7 +8,7 @@ import (
 
 func main() {
 	engine := engine.NewAnalysisService()
-	engine.Scan("garbage.exe")
+	engine.Scan("testfile.txt")
 	//srv := server.NewServer()
 	//http.ListenAndServe(":8080", srv)
 }
