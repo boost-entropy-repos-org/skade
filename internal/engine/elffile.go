@@ -10,7 +10,7 @@ func isElfFile() (bool, error) {
 
 // Checking for the .ELF file signtaure of an ELF file
 func checkElfSignature() (bool, error) {
-	elfBytes := bytes[0:4]
+	elfBytes := susBytes[0:4]
 	fmt.Println(elfBytes)
 	// 46 Decimal Ascii representation of .
 	if elfBytes[0] != 46 {

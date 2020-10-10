@@ -17,7 +17,7 @@ var (
 var (
 	FileName       string
 	suspiciousFile *os.File
-	bytes          []byte
+	susBytes       []byte
 )
 
 type analysisService struct {
@@ -35,10 +35,10 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 		log.Fatal("Could not open file")
 	}
 
-	//then get all the bytes from the file
-	bytes, err = getBytesFromFile()
+	//then get all the susBytes from the file
+	susBytes, err = getBytesFromFile()
 	if err != nil {
-		log.Fatal("failed to read get bytes from file, this is fatal")
+		log.Fatal("failed to read get susBytes from file, this is fatal")
 	}
 	defer suspiciousFile.Close()
 
@@ -51,7 +51,7 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 	} else {
 		fmt.Println("nay not a pe")
 	}
-	thisdoesnotmatter := bytes[0:8]
+	thisdoesnotmatter := susBytes[0:8]
 	fmt.Println(thisdoesnotmatter)
 	return nil, nil
 }
@@ -62,10 +62,10 @@ func getBytesFromFile() ([]byte, error) {
 		return nil, err
 	}
 	var size int64 = stats.Size()
-	bytes := make([]byte, size)
+	susBytes := make([]byte, size)
 
 	buffer := bufio.NewReader(suspiciousFile)
-	_, err = buffer.Read(bytes)
+	_, err = buffer.Read(susBytes)
 
-	return bytes, err
+	return susBytes, err
 }
