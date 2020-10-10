@@ -21,10 +21,13 @@ var (
 )
 
 type analysisService struct {
+	logger Logger
 }
 
-func NewAnalysisService() AnalysisService {
-	return &analysisService{}
+func NewAnalysisService(logger Logger) AnalysisService {
+	return &analysisService{
+		logger,
+	}
 }
 
 func (a *analysisService) Scan(FileName string) (*Report, error) {

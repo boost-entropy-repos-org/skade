@@ -51,6 +51,7 @@ func getOffset() {
 	// since endianness does not matter for a single byte
 	// we can convert from byte to int like this
 	offset = int(offset_byte)
+	Logger.Debug("testing here")
 	fmt.Println("offset bytes:")
 	fmt.Println(offset_byte)
 	fmt.Println("offset:")
