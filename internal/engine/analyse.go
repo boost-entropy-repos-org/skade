@@ -31,6 +31,7 @@ func NewAnalysisService(logger Logger) AnalysisService {
 }
 
 func (a *analysisService) Scan(FileName string) (*Report, error) {
+	a.logger.Debug("testing")
 	var err error
 	//start by opening the file
 	suspiciousFile, err = os.Open(FileName)
