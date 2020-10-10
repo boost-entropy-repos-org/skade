@@ -40,7 +40,7 @@ func initLogger() *zap.SugaredLogger {
 	if err != nil {
 		panic("failed to initalize logger")
 	}
-	logger := baselogger.Sugar()
+	logger := baselogger.WithOptions(zap.AddCallerSkip(1)).Sugar()
 	return logger
 }
 
