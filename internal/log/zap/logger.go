@@ -49,9 +49,9 @@ func (el *engineLogger) Debug(message string) {
 }
 
 func (el *engineLogger) Info(message string) {
-	el.logger.Error(message)
+	el.logger.Info(message)
 }
 
 func (el *engineLogger) Error(message string) {
-	el.logger.Info(message)
+	el.logger.Error(message)
 }

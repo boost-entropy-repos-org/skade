@@ -8,7 +8,8 @@ var (
 	offset int
 )
 
-func isPeFile() (bool, error) {
+func (a *analysisService) isPeFile() (bool, error) {
+	a.logger.Debug("isPe test")
 	MZ, err := checkMzSignature()
 	if err != nil {
 		return false, err
