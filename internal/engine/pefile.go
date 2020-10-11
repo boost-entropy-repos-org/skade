@@ -1,13 +1,12 @@
 package engine
 
-import (
-	"fmt"
-)
+import ()
 
 var (
 	offset int
 )
 
+// Check if the File is in valid PE format
 func (a *analysisService) isPeFile() (bool, error) {
 	a.logger.Debug("isPe test")
 	MZ, err := checkMzSignature()
@@ -18,14 +17,36 @@ func (a *analysisService) isPeFile() (bool, error) {
 	if MZ != true {
 		return false, nil
 	}
+	a.logger.Debug("MZ Signature found")
+
+	// get the offset (from 0x3c) needed for further checks
 	getOffset()
+
+	//next we check if the MS-DOS Stub is present
+	dosStub, err := checkDosStub()
+	if err != nil {
+		return false, err
+	}
+	a.logger.Debug("DOS Stub Found")
+
+	// the DOS Stub is mandatory for a PE file,
+	// if its missing the file might be corrupted
+	if dosStub != true {
+		return false, nil
+	}
 	return true, nil
 }
 
 //here we check if the MS-DOS Stub is present and compliant
 func checkDosStub() (bool, error) {
-	stubbytes := susBytes[0:8]
-	fmt.Println(stubbytes)
+	// for simplicity sake, for now we only look at the string and not the full dos stub
+	stubbytes := susBytes[78:120]
+	dosString := string(stubbytes)
+	// technically, a program can have a different DOS stub and be a valid PE file
+	// that would be considered an annomaly tho
+	if dosString != "This program cannot be run in DOS mode" {
+		return false, nil
+	}
 	return true, nil
 }
 
@@ -33,7 +54,6 @@ func checkDosStub() (bool, error) {
 // Thus, if this file does not start with MZ it cannot be a pe file
 func checkMzSignature() (bool, error) {
 	MZ_bytes := susBytes[0:2]
-	fmt.Println(MZ_bytes)
 	// 77 Decimal Ascii representation of M
 	if MZ_bytes[0] != 77 {
 		return false, nil
@@ -52,9 +72,4 @@ func getOffset() {
 	// since endianness does not matter for a single byte
 	// we can convert from byte to int like this
 	offset = int(offset_byte)
-	//	Logger.Debug("testing here")
-	fmt.Println("offset bytes:")
-	fmt.Println(offset_byte)
-	fmt.Println("offset:")
-	fmt.Println(offset)
 }

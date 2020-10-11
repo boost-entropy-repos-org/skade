@@ -19,7 +19,7 @@ func main() {
 		panic("no logger")
 	}
 	engine := engine.NewAnalysisService(logger)
-	engine.Scan("garbage.exe")
+	engine.Scan("testfiles/garbage.exe")
 	//srv := server.NewServer()
 	//http.ListenAndServe(":8080", srv)
 }
