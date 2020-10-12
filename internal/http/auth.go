@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -16,10 +17,17 @@ func (s *Server) loginPage() http.HandlerFunc {
 		p := Page{
 			Title: "Login",
 		}
-		t, err := template.ParseFiles(filepath.Join(wd + "/web/templates/login.html"))
-		if err != nil {
-			panic(err)
+		if r.Method == "GET" {
+			t, err := template.ParseFiles(filepath.Join(wd + "/web/templates/login.html"))
+			if err != nil {
+				panic(err)
+			}
+			t.Execute(w, p)
+		} else {
+			r.ParseForm()
+			// here we validate the login
+			fmt.Println("username:", r.Form["username"])
+			fmt.Println("password:", r.Form["password"])
 		}
-		t.Execute(w, p)
 	}
 }

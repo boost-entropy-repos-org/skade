@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/Mindslave/skade/internal/engine"
+	"github.com/Mindslave/skade/internal/http"
 	"github.com/Mindslave/skade/internal/log/zap"
-	//"github.com/Mindslave/skade/internal/http"
-	//"net/http"
+	"net/http"
 )
 
 func main() {
@@ -20,6 +20,6 @@ func main() {
 	}
 	engine := engine.NewAnalysisService(logger)
 	engine.Scan("testfiles/garbage.exe")
-	//srv := server.NewServer()
-	//http.ListenAndServe(":8080", srv)
+	srv := server.NewServer()
+	http.ListenAndServe(":8080", srv)
 }
