@@ -28,6 +28,7 @@ func (s *Server) loginPage() http.HandlerFunc {
 			// here we validate the login
 			fmt.Println("username:", r.Form["username"])
 			fmt.Println("password:", r.Form["password"])
+			template.HTMLEscape(w, []byte(r.Form.Get("username")))
 		}
 	}
 }
