@@ -1,4 +1,4 @@
-package engine
+package domain
 
 // An adapter for datastorage
 // will add support for postgresql first,

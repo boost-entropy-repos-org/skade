@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Mindslave/skade/internal/engine"
 	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
@@ -16,11 +17,23 @@ func NewServer() *Server {
 	return s
 }
 
-func (s *Server) routes() {
-	s.HandleFunc("/", s.indexPage()).Methods("GET")
-	s.HandleFunc("/login", s.loginPage()).Methods("GET", "POST")
-	s.HandleFunc("/home", s.homePage()).Methods("GET")
-	s.HandleFunc("/static/css/bulma.min.css", s.css()).Methods("GET")
+type httpInteractor struct {
+	router *mux.Router
+}
+
+func NewHttpInteractor() engine.Interactor {
+	interactor := mux.NewRouter()
+	return httpInteractor{
+		interactor,
+	}
+}
+
+func (h *httpInteractor) GetFile(FileName string) ([]byte, error) {
+	return nil, nil
+}
+
+func (h *httpInteractor) AuthenticateUser(Name string) {
+
 }
 
 func (s *Server) indexPage() http.HandlerFunc {
