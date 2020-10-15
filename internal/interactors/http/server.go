@@ -4,6 +4,7 @@ import (
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/gorilla/mux"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -18,22 +19,18 @@ func NewServer() *Server {
 }
 
 type httpInteractor struct {
-	router *mux.Router
+	router *Server
 }
 
-func NewHttpInteractor() engine.Interactor {
-	interactor := mux.NewRouter()
+func NewHttpInteractor(engine.AnalysisService) httpInteractor {
+	interactor := NewServer()
 	return httpInteractor{
 		interactor,
 	}
 }
 
-func (h *httpInteractor) GetFile(FileName string) ([]byte, error) {
-	return nil, nil
-}
-
-func (h *httpInteractor) AuthenticateUser(Name string) {
-
+func (h *httpInteractor) StartServer() {
+	log.Fatal(http.ListenAndServe(":8080", h.router))
 }
 
 func (s *Server) indexPage() http.HandlerFunc {

@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"github.com/Mindslave/skade/internal/domain/filetypes/pefiles"
 	"os"
 )
 
@@ -24,7 +25,7 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 		a.logger.Error("Could not get raw bytes from file")
 	}
 
-	isPe, err := a.isPeFile()
+	isPe, err := pefiles.IsPeFile(susBytes)
 	if err != nil {
 		a.logger.Error("Error during PE check")
 	}

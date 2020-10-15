@@ -14,20 +14,16 @@ var (
 )
 
 type analysisService struct {
-	logger     Logger
-	repo       Repository
-	interactor Interactor
+	logger Logger
 }
 
 type AnalysisService interface {
 	Scan(fileName string) (*Report, error)
 }
 
-func NewAnalysisService(logger Logger, repo Repository, interactor Interactor) AnalysisService {
+func NewAnalysisService(logger Logger) AnalysisService {
 	return &analysisService{
 		logger,
-		repo,
-		interactor,
 	}
 }
 
