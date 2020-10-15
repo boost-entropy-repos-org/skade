@@ -6,15 +6,22 @@ import (
 )
 
 func TestCheckMZSignature(t *testing.T) {
-	testBytes, err := ioutil.ReadFile("../../testfiles/test.exe")
+	testfiles, err := ioutil.ReadDir("./testdata")
 	if err != nil {
-		t.Fatal("Could not open testfile")
+		t.Fatal("Could not get testfiles")
 	}
-	MZ, err := checkMzSignature(testBytes)
-	if err != nil {
-		t.Fatal("Could not open testfile")
-	}
-	if MZ != true {
-		t.Fatal("Failed to verify MZ singature")
+	for _, testfile := range testfiles {
+		testfileName := "testdata/" + testfile.Name()
+		testBytes, err := ioutil.ReadFile(testfileName)
+		if err != nil {
+			t.Fatal("Could not open testfile")
+		}
+		MZ, err := checkMzSignature(testBytes)
+		if err != nil {
+			t.Fatal("Could not open testfile")
+		}
+		if MZ != true {
+			t.Fatal("Failed to verify MZ singature")
+		}
 	}
 }
