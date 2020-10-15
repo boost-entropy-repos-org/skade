@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/Mindslave/skade/internal/domain/filetypes/pefiles"
+	"github.com/Mindslave/skade/pkg/pefiles"
 	"os"
 )
 

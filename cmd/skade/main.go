@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Mindslave/skade/internal/domain"
+	"github.com/Mindslave/skade/internal/engine"
 	"github.com/Mindslave/skade/internal/interactors/http"
 	"github.com/Mindslave/skade/internal/log/zap"
 	//"github.com/Mindslave/skade/internal/repositories/postgres"
