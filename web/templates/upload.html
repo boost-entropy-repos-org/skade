@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Upload</title>
     <link rel="stylesheet" type="text/css" href="../static/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/dropzone.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/basic.min.css">
   </head>
   <body>
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -31,29 +33,20 @@
     </div>
   </div>
 </nav>
-    <form
-      enctype="multipart/form-data"
-      action="http://localhost:8080/upload"
-      method="post"
-    >
-   <div class="field">
-	  <div class="file is-large is-centered is-danger has-name is-boxed">
-		<label class="file-label">
-		  <input class="file-input" type="file" name="resume">
-		  <span class="file-cta">
-			<span class="file-icon">
-			  <i class="fas fa-cloud-upload-alt"></i>
-			</span>
-			<span class="file-label">
-			  Danger file…
-			</span>
-		  </span>
-		  <span class="file-name">
-			Screen Shot 2017-07-29 at 15.54.25.png
-		  </span>
-		</label>
-	  </div>
-	</div> 
-    </form>
+	<main>
+		<section>
+			 <h1 id="try-it-out">Try it out!</h1>
+			<div id="dropzone">
+				<form action="/upload" class="dropzone dz-clickable" id="demo-upload">
+					<div class="dz-message">
+                        Drop files here or click to upload.
+						<br> 
+                        <span class="note">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
   </body>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.0/dropzone.js"></script>
 </html>

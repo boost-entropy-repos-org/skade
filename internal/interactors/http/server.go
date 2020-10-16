@@ -72,7 +72,7 @@ func (s *Server) homePage() http.HandlerFunc {
 	}
 }
 
-func (s *Server) css() http.HandlerFunc {
+func (s *Server) bulmaCss() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/css")
 		wd, err := os.Getwd()
@@ -84,6 +84,69 @@ func (s *Server) css() http.HandlerFunc {
 		}
 		files := []string{
 			filepath.Join(wd + "/web/static/css/bulma.min.css"),
+		}
+		t, err := template.ParseFiles(files...)
+		if err != nil {
+			panic(err)
+		}
+		t.Execute(w, p)
+	}
+}
+
+func (s *Server) dropzoneCss() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/css")
+		wd, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		p := Page{
+			Title: "Index",
+		}
+		files := []string{
+			filepath.Join(wd + "/web/static/css/dropzone.min.css"),
+		}
+		t, err := template.ParseFiles(files...)
+		if err != nil {
+			panic(err)
+		}
+		t.Execute(w, p)
+	}
+}
+
+func (s *Server) basicCss() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/css")
+		wd, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		p := Page{
+			Title: "Index",
+		}
+		files := []string{
+			filepath.Join(wd + "/web/static/css/basic.min.css"),
+		}
+		t, err := template.ParseFiles(files...)
+		if err != nil {
+			panic(err)
+		}
+		t.Execute(w, p)
+	}
+}
+
+func (s *Server) dropzoneJs() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/javascript")
+		wd, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		p := Page{
+			Title: "Index",
+		}
+		files := []string{
+			filepath.Join(wd + "/web/static/js/dropzone.min.js"),
 		}
 		t, err := template.ParseFiles(files...)
 		if err != nil {
