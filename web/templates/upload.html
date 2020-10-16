@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bulma.min.css">
   </head>
   <body>
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+        <h1 class="navbar-item">
+            Skade
+        </h1>
+    </div>
+
+    <div class="navbar-end">
+      <a class="navbar-item" href="https://github.com/Mindslave/skade">
+        Github
+      </a>
+    </div>
+  </div>
+</nav>
     <form
       enctype="multipart/form-data"
       action="http://localhost:8080/upload"
       method="post"
     >
-      <input type="file" name="myFile" />
-      <input type="submit" value="upload" />
+   <div class="field">
+	  <div class="file is-large is-centered is-danger has-name is-boxed">
+		<label class="file-label">
+		  <input class="file-input" type="file" name="resume">
+		  <span class="file-cta">
+			<span class="file-icon">
+			  <i class="fas fa-cloud-upload-alt"></i>
+			</span>
+			<span class="file-label">
+			  Danger file…
+			</span>
+		  </span>
+		  <span class="file-name">
+			Screen Shot 2017-07-29 at 15.54.25.png
+		  </span>
+		</label>
+	  </div>
+	</div> 
     </form>
   </body>
 </html>

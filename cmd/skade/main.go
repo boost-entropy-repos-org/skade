@@ -33,6 +33,6 @@ func main() {
 	//}
 	engine := engine.NewAnalysisService(logger)
 	httpInteractor := server.NewHttpInteractor(engine)
-	engine.Scan("testfiles/garbage.exe")
 	httpInteractor.StartServer()
+	//engine.Scan("testfiles/garbage.exe")
 }
