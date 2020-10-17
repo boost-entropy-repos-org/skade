@@ -36,3 +36,17 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 	}
 	return nil, nil
 }
+
+func (a *analysisService) ScanBytes(susBytes []byte) (*Report, error) {
+	a.logger.Debug("Starting Scan")
+	isPe, err := pefiles.IsPeFile(susBytes)
+	if err != nil {
+		a.logger.Error("Error during PE check")
+	}
+	if isPe {
+		a.logger.Info("The file has been identified as a PE file")
+	} else {
+		a.logger.Debug("The file is not a PE file")
+	}
+	return nil, nil
+}
