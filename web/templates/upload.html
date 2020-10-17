@@ -38,7 +38,7 @@
 		<section>
 			 <h1 id="try-it-out">Try it out!</h1>
 			<div id="dropzone">
-				<form action="/upload" class="dropzone dz-clickable" id="demo-upload">
+				<form action="/upload" class="dropzone dz-clickable" id="AwesomeDropzone">
 					<div class="dz-message">
                         Drop potentially malicious files here.
 					</div>
@@ -49,4 +49,13 @@
 </container>
   </body>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.0/dropzone.js"></script>
+    <script>
+        //configuring Dropzone
+        Dropzone.options.AwesomeDropzone = {
+            url: "/upload",
+            paramName: "file",
+            maxFilesize: 50,
+        }
+    </script>
+
 </html>
