@@ -29,9 +29,17 @@ type NtHeader struct {
 }
 
 type FileHeader struct {
+	Data       FileHeaderData
+	FileOffset uint32
+	Flags      map[string]bool
+	Size       uint32
 }
 
 type OptionalHeader struct {
+	Data       OptionalHeaderData
+	FileOffset uint32
+	Flags      map[string]bool
+	Size       uint32
 }
 
 type OptionalHeader64 struct {
@@ -48,6 +56,49 @@ type ExportDirectory struct {
 
 type NtHeaderData struct {
 	Signature uint32
+}
+
+type OptionalHeaderData struct {
+	Magic                       uint16
+	MajorLinkerVersion          uint8
+	MinorLinkerVersion          uint8
+	SizeOfCode                  uint32
+	SizeOfInitializedData       uint32
+	SizeOfUninitializedData     uint32
+	AddressOfEntryPoint         uint32
+	BaseOfCode                  uint32
+	BaseOfData                  uint32
+	ImageBase                   uint32
+	SectionAlignment            uint32
+	FileAlignment               uint32
+	MajorOperatingSystemVersion uint16
+	MinorOperatingSystemVersion uint16
+	MajorImageVersion           uint16
+	MinorImageVersion           uint16
+	MajorSubsystemVersion       uint16
+	MinorSubsystemVersion       uint16
+	Reserved1                   uint32
+	SizeOfImage                 uint32
+	SizeOfHeaders               uint32
+	CheckSum                    uint32
+	Subsystem                   uint16
+	DllCharacteristics          uint16
+	SizeOfStackReserve          uint32
+	SizeOfStackCommit           uint32
+	SizeOfHeapReserve           uint32
+	SizeOfHeapCommit            uint32
+	LoaderFlags                 uint32
+	NumberOfRvaAndSizes         uint32
+}
+
+type FileHeaderData struct {
+	Machine              uint16
+	NumberOfSections     uint16
+	TimeDateStamp        uint32
+	PointerToSymbolTable uint32
+	NumberOfSymbols      uint32
+	SizeOfOptionalHeader uint16
+	Characteristics      uint16
 }
 
 type DosHeaderData struct {
