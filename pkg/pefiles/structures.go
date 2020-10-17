@@ -1,6 +1,56 @@
 package pefiles
 
-type DosHeaderD struct {
+type PEFile struct {
+	DosHeader         DosHeader
+	NtHeader          NtHeader
+	FileHeader        FileHeader
+	OptionalHeader    OptionalHeader
+	OptionalHeader64  OptionalHeader64
+	Sections          []SectionHeader
+	importDescriptors ImportDescriptors
+	ExportDirectory   ExportDirectory
+
+	dataLen   uint32
+	headerEnd uint32
+}
+
+type DosHeader struct {
+	Data       DosHeaderData
+	FileOffset uint32
+	Flags      map[string]bool
+	Size       uint32
+}
+
+type NtHeader struct {
+	Data       NtHeaderData
+	FileOffset uint32
+	Flags      map[string]bool
+	Size       uint32
+}
+
+type FileHeader struct {
+}
+
+type OptionalHeader struct {
+}
+
+type OptionalHeader64 struct {
+}
+
+type ImportDescriptors struct {
+}
+
+type SectionHeader struct {
+}
+
+type ExportDirectory struct {
+}
+
+type NtHeaderData struct {
+	Signature uint32
+}
+
+type DosHeaderData struct {
 	E_magic    uint16    // Magic bytes aka MZ aka 0x5A4D
 	E_cblp     uint16    // Number of bytes in the last page.
 	E_cp       uint16    // Number of Pages in file
