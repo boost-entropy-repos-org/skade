@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-func (s *Server) bulmaCss() http.HandlerFunc {
+func (h *httpInteractor) bulmaCss() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/css")
 		wd, err := os.Getwd()
@@ -28,7 +28,7 @@ func (s *Server) bulmaCss() http.HandlerFunc {
 	}
 }
 
-func (s *Server) dropzoneCss() http.HandlerFunc {
+func (h *httpInteractor) dropzoneCss() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/css")
 		wd, err := os.Getwd()
@@ -49,7 +49,7 @@ func (s *Server) dropzoneCss() http.HandlerFunc {
 	}
 }
 
-func (s *Server) customCss() http.HandlerFunc {
+func (h *httpInteractor) customCss() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/css")
 		wd, err := os.Getwd()
@@ -70,7 +70,7 @@ func (s *Server) customCss() http.HandlerFunc {
 	}
 }
 
-func (s *Server) dropzoneJs() http.HandlerFunc {
+func (h *httpInteractor) dropzoneJs() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Add("Content-Type", "text/javascript")
 		wd, err := os.Getwd()

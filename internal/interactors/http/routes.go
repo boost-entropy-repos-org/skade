@@ -1,13 +1,12 @@
 package server
 
-func (s *Server) routes() {
+func (h *httpInteractor) routes() {
 	//regular endpoints
-	s.HandleFunc("/", s.indexPage()).Methods("GET")
-	s.HandleFunc("/login", s.loginPage()).Methods("GET", "POST")
-	s.HandleFunc("/upload", s.uploadEndpoint()).Methods("POST")
+	h.router.HandleFunc("/", h.indexPage()).Methods("GET")
+	h.router.HandleFunc("/upload", h.uploadEndpoint()).Methods("POST")
 	//static files
-	s.HandleFunc("/static/css/bulma.min.css", s.bulmaCss()).Methods("GET")
-	s.HandleFunc("/static/css/dropzone.min.css", s.dropzoneCss()).Methods("GET")
-	s.HandleFunc("/static/css/custom.css", s.customCss()).Methods("GET")
-	s.HandleFunc("/static/js/dropzone.min.js", s.dropzoneJs()).Methods("GET")
+	h.router.HandleFunc("/static/css/bulma.min.css", h.bulmaCss()).Methods("GET")
+	h.router.HandleFunc("/static/css/dropzone.min.css", h.dropzoneCss()).Methods("GET")
+	h.router.HandleFunc("/static/css/custom.css", h.customCss()).Methods("GET")
+	h.router.HandleFunc("/static/js/dropzone.min.js", h.dropzoneJs()).Methods("GET")
 }

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func (s *Server) indexPage() http.HandlerFunc {
+func (h *httpInteractor) indexPage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		wd, err := os.Getwd()
 		if err != nil {
@@ -26,7 +26,7 @@ func (s *Server) indexPage() http.HandlerFunc {
 }
 
 //here we get the uploaded 'suspicious' file
-func (s *Server) uploadEndpoint() http.HandlerFunc {
+func (h *httpInteractor) uploadEndpoint() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.ParseMultipartForm(0 << 200)
 		file, handler, err := r.FormFile("file")

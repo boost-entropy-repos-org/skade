@@ -11,19 +11,22 @@ func NewServer() *Server {
 	s := &Server{
 		Router: mux.NewRouter(),
 	}
-	s.routes()
 	return s
 }
 
 type httpInteractor struct {
 	router *Server
+	engine engine.AnalysisService
 }
 
-func NewHttpInteractor(engine.AnalysisService) httpInteractor {
+func NewHttpInteractor(engine engine.AnalysisService) httpInteractor {
 	interactor := NewServer()
-	return httpInteractor{
+	h := httpInteractor{
 		interactor,
+		engine,
 	}
+	h.routes()
+	return h
 }
 
 func (h *httpInteractor) StartServer() {
