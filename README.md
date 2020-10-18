@@ -9,7 +9,7 @@ Done:
 - [x] Build a simple http frontend to upload potenially malicious files
 
 CurrentlyDoing:
-- [ ] Build a PE file parser
+- [ ] Build a PE file parser (https://github.com/Mindslave/parse-pe)
 
 ToDo:
 - [ ] Everything else

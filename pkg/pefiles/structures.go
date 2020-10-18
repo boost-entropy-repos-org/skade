@@ -1,6 +1,8 @@
 package pefiles
 
+// the final PE File structure that should hold all information
 type PEFile struct {
+	FileName          string
 	DosHeader         DosHeader
 	NtHeader          NtHeader
 	FileHeader        FileHeader
