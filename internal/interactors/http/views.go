@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"html/template"
-	"io"
+	//"io"
 	"net/http"
 	"os"
 	"path/filepath"

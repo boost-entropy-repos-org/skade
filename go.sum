@@ -1,6 +1,10 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Mindslave/parse-pe v0.0.0-20201020103934-d412ef85f06c h1:a/KHmc2HnQXtxugXrVdHC34K6xXx5PEvkAyypxSLJcw=
 github.com/Mindslave/parse-pe v0.0.0-20201020103934-d412ef85f06c/go.mod h1:/y7COm2H2bNMW3qdji60g+ONuhcF53McYJjKxMT5Oe4=
+github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934 h1:1SoL9UKTy6NuyZ43J566rIb/iaR0PlfqZdNON1Q4p0k=
+github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934/go.mod h1:/y7COm2H2bNMW3qdji60g+ONuhcF53McYJjKxMT5Oe4=
+github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb h1:5h7KPiUqTkowVymcE8UVZr1Em08fHrsx4OVZnLaykrc=
+github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb/go.mod h1:/y7COm2H2bNMW3qdji60g+ONuhcF53McYJjKxMT5Oe4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/edsrzf/mmap-go v1.0.0 h1:CEBF7HpRnUCSJgGUb5h1Gm7e3VkmVDrR8lvWVLtrOFw=
@@ -38,6 +42,8 @@ golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a/go.mod h1:STP8DvDyc/dI5b8T5h
 golang.org/x/sys v0.0.0-20190412213103-97732733099d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20201018230417-eeed37f84f13 h1:5jaG59Zhd+8ZXe8C+lgiAGqkOaZBruqrWclLkgAww34=
 golang.org/x/sys v0.0.0-20201018230417-eeed37f84f13/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf h1:kt3wY1Lu5MJAnKTfoMR52Cu4gwvna4VTzNOiT8tY73s=
+golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/tools v0.0.0-20190311212946-11955173bddd/go.mod h1:LCzVGOaR6xXOjkQ3onu1FJEFr0SW1gC7cKk1uF8kGRs=
 golang.org/x/tools v0.0.0-20190621195816-6e04913cbbac/go.mod h1:/rFqwRUd4F7ZHNgwSSTFct+R/Kf4OFW1sUzUTQQTgfc=

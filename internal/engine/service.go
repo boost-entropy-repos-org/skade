@@ -1,15 +1,15 @@
 package engine
 
 import (
-	"bufio"
+	//"bufio"
 	//"encoding/hex"
-	"os"
+	"io"
 )
 
 // Package wide Variables
 var (
 	FileName       string
-	suspiciousFile *os.File
+	suspiciousFile io.Reader
 	susBytes       []byte
 )
 
@@ -20,7 +20,7 @@ type analysisService struct {
 type AnalysisService interface {
 	Scan(fileName string) (*Report, error)
 	ScanBytes(susBytes []byte) (*Report, error)
-	ScanFile(file *os.File) (*Report, error)
+	ScanFile(file io.Reader) (*Report, error)
 }
 
 func NewAnalysisService(logger Logger) AnalysisService {
@@ -29,16 +29,16 @@ func NewAnalysisService(logger Logger) AnalysisService {
 	}
 }
 
-func getBytesFromFile() ([]byte, error) {
-	stats, err := suspiciousFile.Stat()
-	if err != nil {
-		return nil, err
-	}
-	var size int64 = stats.Size()
-	susBytes := make([]byte, size)
-
-	buffer := bufio.NewReader(suspiciousFile)
-	_, err = buffer.Read(susBytes)
-
-	return susBytes, err
-}
+//func getBytesFromFile() ([]byte, error) {
+//	stats, err := suspiciousFile.Stat()
+//	if err != nil {
+//		return nil, err
+//	}
+//	var size int64 = stats.Size()
+//	susBytes := make([]byte, size)
+//
+//	buffer := bufio.NewReader(suspiciousFile)
+//	_, err = buffer.Read(susBytes)
+//
+//	return susBytes, err
+//}
