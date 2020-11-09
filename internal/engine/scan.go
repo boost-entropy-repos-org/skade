@@ -1,13 +1,16 @@
 package engine
 
 import (
-	"github.com/Mindslave/skade/pkg/pefiles"
+	"fmt"
+	"mime/multipart"
 	"os"
+
+	"github.com/Mindslave/parse-pe"
 )
 
 // the main 'scan' function, will basically be a wrapper around the other functionalities
 func (a *analysisService) Scan(FileName string) (*Report, error) {
-	a.logger.Debug("Starting Scan")
+	a.logger.Debug("Skade Entrypoint")
 	var err error
 	//start by opening the file
 	suspiciousFile, err = os.Open(FileName)
@@ -25,28 +28,30 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 		a.logger.Error("Could not get raw bytes from file")
 	}
 
-	isPe, err := pefiles.IsPeFile(susBytes)
-	if err != nil {
-		a.logger.Error("Error during PE check")
-	}
-	if isPe {
-		a.logger.Info("The file has been identified as a PE file")
-	} else {
-		a.logger.Debug("The file is not a PE file")
-	}
 	return nil, nil
 }
 
 func (a *analysisService) ScanBytes(susBytes []byte) (*Report, error) {
 	a.logger.Debug("Starting Scan")
-	isPe, err := pefiles.IsPeFile(susBytes)
-	if err != nil {
-		a.logger.Error("Error during PE check")
-	}
-	if isPe {
-		a.logger.Info("The file has been identified as a PE file")
-	} else {
-		a.logger.Debug("The file is not a PE file")
-	}
 	return nil, nil
+}
+
+func (a *analysisService) ScanFile(file *os.File) (*Report, error) {
+	susPeFile, err := pefiles.NewPEFile("malware.exe", file)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(susPeFile.DosHeader.Data.E_magic)
+	report := new(Report)
+	return report, nil
+}
+
+func (a *analysisService) ScanFileUpload(file multipart.File) (*Report, error) {
+	susPeFile, err := pefiles.NewPEFile("malware.exe", file)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(susPeFile.DosHeader.Data.E_magic)
+	report := new(Report)
+	return report, nil
 }

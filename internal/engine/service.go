@@ -20,6 +20,7 @@ type analysisService struct {
 type AnalysisService interface {
 	Scan(fileName string) (*Report, error)
 	ScanBytes(susBytes []byte) (*Report, error)
+	ScanFile(file *os.File) (*Report, error)
 }
 
 func NewAnalysisService(logger Logger) AnalysisService {

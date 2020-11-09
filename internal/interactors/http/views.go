@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -38,12 +38,7 @@ func (h *httpInteractor) uploadEndpoint() http.HandlerFunc {
 		fmt.Printf("Upload File: %+v\n", handler.Filename)
 		fmt.Printf("File size: %+v\n", handler.Size)
 		fmt.Printf("File Header: %+v\n", handler.Header)
-
-		data, err := ioutil.ReadAll(file)
-		if err != nil {
-			panic(err)
-		}
-		result, err := h.engine.ScanBytes(data)
+		result, err := h.engine.ScanFile(file)
 		if err != nil {
 			panic(err)
 		}
