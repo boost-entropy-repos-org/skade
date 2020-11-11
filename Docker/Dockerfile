@@ -11,5 +11,6 @@ RUN go mod download
 
 COPY . .
 
+EXPOSE 80
 RUN GOOS=linux GOARCH=amd64 go build -o main cmd/skade/main.go
 CMD ["/app/main"]

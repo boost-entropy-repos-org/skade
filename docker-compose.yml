@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12.3-alpine
+    env_file:
+      - env/postgres.env
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+	
+	skade:
+		container_name: skade
+		build:
+			context: ./
+			dockerfile: ./Docker/Dockerfile
+		depends_on:
+			- postgres
+		ports:
+			- target: 80
+				published: 80
+
+
+volumes:
+	postgres_data:
