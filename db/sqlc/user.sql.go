@@ -32,3 +32,53 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 	)
 	return i, err
 }
+
+const getUser = `-- name: GetUser :one
+SELECT id, username, email, created_at FROM users
+WHERE id = $1 LIMIT 1
+`
+
+func (q *Queries) GetUser(ctx context.Context, id int64) (User, error) {
+	row := q.queryRow(ctx, q.getUserStmt, getUser, id)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Username,
+		&i.Email,
+		&i.CreatedAt,
+	)
+	return i, err
+}
+
+const listUsers = `-- name: ListUsers :many
+SELECT id, username, email, created_at FROM users
+ORDER BY name
+`
+
+func (q *Queries) ListUsers(ctx context.Context) ([]User, error) {
+	rows, err := q.query(ctx, q.listUsersStmt, listUsers)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []User
+	for rows.Next() {
+		var i User
+		if err := rows.Scan(
+			&i.ID,
+			&i.Username,
+			&i.Email,
+			&i.CreatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

@@ -25,6 +25,12 @@ func Prepare(ctx context.Context, db DBTX) (*Queries, error) {
 	if q.createUserStmt, err = db.PrepareContext(ctx, createUser); err != nil {
 		return nil, fmt.Errorf("error preparing query CreateUser: %w", err)
 	}
+	if q.getUserStmt, err = db.PrepareContext(ctx, getUser); err != nil {
+		return nil, fmt.Errorf("error preparing query GetUser: %w", err)
+	}
+	if q.listUsersStmt, err = db.PrepareContext(ctx, listUsers); err != nil {
+		return nil, fmt.Errorf("error preparing query ListUsers: %w", err)
+	}
 	return &q, nil
 }
 
@@ -33,6 +39,16 @@ func (q *Queries) Close() error {
 	if q.createUserStmt != nil {
 		if cerr := q.createUserStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing createUserStmt: %w", cerr)
+		}
+	}
+	if q.getUserStmt != nil {
+		if cerr := q.getUserStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getUserStmt: %w", cerr)
+		}
+	}
+	if q.listUsersStmt != nil {
+		if cerr := q.listUsersStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing listUsersStmt: %w", cerr)
 		}
 	}
 	return err
@@ -75,6 +91,8 @@ type Queries struct {
 	db             DBTX
 	tx             *sql.Tx
 	createUserStmt *sql.Stmt
+	getUserStmt    *sql.Stmt
+	listUsersStmt  *sql.Stmt
 }
 
 func (q *Queries) WithTx(tx *sql.Tx) *Queries {
@@ -82,5 +100,7 @@ func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 		db:             tx,
 		tx:             tx,
 		createUserStmt: q.createUserStmt,
+		getUserStmt:    q.getUserStmt,
+		listUsersStmt:  q.listUsersStmt,
 	}
 }
