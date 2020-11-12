@@ -1,7 +1,7 @@
 
 -- name: CreateReport :one
 INSERT INTO reports (
-    fileid,
+    file,
     malicious
 ) VALUES (
     $1, $2

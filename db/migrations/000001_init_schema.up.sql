@@ -14,7 +14,7 @@ CREATE TABLE "files" (
       "uploaded_by" bigint
 );
 
-CREATE TABLE "Reports" (
+CREATE TABLE "reports" (
       "id" bigserial PRIMARY KEY,
       "file" bigint,
       "malicious" boolean NOT NULL
@@ -22,4 +22,4 @@ CREATE TABLE "Reports" (
 
 ALTER TABLE "files" ADD FOREIGN KEY ("uploaded_by") REFERENCES "users" ("id");
 
-ALTER TABLE "Reports" ADD FOREIGN KEY ("file") REFERENCES "files" ("id");
+ALTER TABLE "reports" ADD FOREIGN KEY ("file") REFERENCES "files" ("id");

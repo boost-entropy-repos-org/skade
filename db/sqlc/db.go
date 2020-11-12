@@ -22,17 +22,26 @@ func New(db DBTX) *Queries {
 func Prepare(ctx context.Context, db DBTX) (*Queries, error) {
 	q := Queries{db: db}
 	var err error
+	if q.createReportStmt, err = db.PrepareContext(ctx, createReport); err != nil {
+		return nil, fmt.Errorf("error preparing query CreateReport: %w", err)
+	}
 	if q.createUserStmt, err = db.PrepareContext(ctx, createUser); err != nil {
 		return nil, fmt.Errorf("error preparing query CreateUser: %w", err)
 	}
 	if q.getFileStmt, err = db.PrepareContext(ctx, getFile); err != nil {
 		return nil, fmt.Errorf("error preparing query GetFile: %w", err)
 	}
+	if q.getReportStmt, err = db.PrepareContext(ctx, getReport); err != nil {
+		return nil, fmt.Errorf("error preparing query GetReport: %w", err)
+	}
 	if q.getUserStmt, err = db.PrepareContext(ctx, getUser); err != nil {
 		return nil, fmt.Errorf("error preparing query GetUser: %w", err)
 	}
 	if q.listFilesStmt, err = db.PrepareContext(ctx, listFiles); err != nil {
 		return nil, fmt.Errorf("error preparing query ListFiles: %w", err)
+	}
+	if q.listReportsStmt, err = db.PrepareContext(ctx, listReports); err != nil {
+		return nil, fmt.Errorf("error preparing query ListReports: %w", err)
 	}
 	if q.listUsersStmt, err = db.PrepareContext(ctx, listUsers); err != nil {
 		return nil, fmt.Errorf("error preparing query ListUsers: %w", err)
@@ -45,6 +54,11 @@ func Prepare(ctx context.Context, db DBTX) (*Queries, error) {
 
 func (q *Queries) Close() error {
 	var err error
+	if q.createReportStmt != nil {
+		if cerr := q.createReportStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing createReportStmt: %w", cerr)
+		}
+	}
 	if q.createUserStmt != nil {
 		if cerr := q.createUserStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing createUserStmt: %w", cerr)
@@ -55,6 +69,11 @@ func (q *Queries) Close() error {
 			err = fmt.Errorf("error closing getFileStmt: %w", cerr)
 		}
 	}
+	if q.getReportStmt != nil {
+		if cerr := q.getReportStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getReportStmt: %w", cerr)
+		}
+	}
 	if q.getUserStmt != nil {
 		if cerr := q.getUserStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing getUserStmt: %w", cerr)
@@ -63,6 +82,11 @@ func (q *Queries) Close() error {
 	if q.listFilesStmt != nil {
 		if cerr := q.listFilesStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing listFilesStmt: %w", cerr)
+		}
+	}
+	if q.listReportsStmt != nil {
+		if cerr := q.listReportsStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing listReportsStmt: %w", cerr)
 		}
 	}
 	if q.listUsersStmt != nil {
@@ -112,25 +136,31 @@ func (q *Queries) queryRow(ctx context.Context, stmt *sql.Stmt, query string, ar
 }
 
 type Queries struct {
-	db             DBTX
-	tx             *sql.Tx
-	createUserStmt *sql.Stmt
-	getFileStmt    *sql.Stmt
-	getUserStmt    *sql.Stmt
-	listFilesStmt  *sql.Stmt
-	listUsersStmt  *sql.Stmt
-	saveFileStmt   *sql.Stmt
+	db               DBTX
+	tx               *sql.Tx
+	createReportStmt *sql.Stmt
+	createUserStmt   *sql.Stmt
+	getFileStmt      *sql.Stmt
+	getReportStmt    *sql.Stmt
+	getUserStmt      *sql.Stmt
+	listFilesStmt    *sql.Stmt
+	listReportsStmt  *sql.Stmt
+	listUsersStmt    *sql.Stmt
+	saveFileStmt     *sql.Stmt
 }
 
 func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 	return &Queries{
-		db:             tx,
-		tx:             tx,
-		createUserStmt: q.createUserStmt,
-		getFileStmt:    q.getFileStmt,
-		getUserStmt:    q.getUserStmt,
-		listFilesStmt:  q.listFilesStmt,
-		listUsersStmt:  q.listUsersStmt,
-		saveFileStmt:   q.saveFileStmt,
+		db:               tx,
+		tx:               tx,
+		createReportStmt: q.createReportStmt,
+		createUserStmt:   q.createUserStmt,
+		getFileStmt:      q.getFileStmt,
+		getReportStmt:    q.getReportStmt,
+		getUserStmt:      q.getUserStmt,
+		listFilesStmt:    q.listFilesStmt,
+		listReportsStmt:  q.listReportsStmt,
+		listUsersStmt:    q.listUsersStmt,
+		saveFileStmt:     q.saveFileStmt,
 	}
 }
