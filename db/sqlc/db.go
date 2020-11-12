@@ -25,11 +25,20 @@ func Prepare(ctx context.Context, db DBTX) (*Queries, error) {
 	if q.createUserStmt, err = db.PrepareContext(ctx, createUser); err != nil {
 		return nil, fmt.Errorf("error preparing query CreateUser: %w", err)
 	}
+	if q.getFileStmt, err = db.PrepareContext(ctx, getFile); err != nil {
+		return nil, fmt.Errorf("error preparing query GetFile: %w", err)
+	}
 	if q.getUserStmt, err = db.PrepareContext(ctx, getUser); err != nil {
 		return nil, fmt.Errorf("error preparing query GetUser: %w", err)
 	}
+	if q.listFilesStmt, err = db.PrepareContext(ctx, listFiles); err != nil {
+		return nil, fmt.Errorf("error preparing query ListFiles: %w", err)
+	}
 	if q.listUsersStmt, err = db.PrepareContext(ctx, listUsers); err != nil {
 		return nil, fmt.Errorf("error preparing query ListUsers: %w", err)
+	}
+	if q.saveFileStmt, err = db.PrepareContext(ctx, saveFile); err != nil {
+		return nil, fmt.Errorf("error preparing query SaveFile: %w", err)
 	}
 	return &q, nil
 }
@@ -41,14 +50,29 @@ func (q *Queries) Close() error {
 			err = fmt.Errorf("error closing createUserStmt: %w", cerr)
 		}
 	}
+	if q.getFileStmt != nil {
+		if cerr := q.getFileStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing getFileStmt: %w", cerr)
+		}
+	}
 	if q.getUserStmt != nil {
 		if cerr := q.getUserStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing getUserStmt: %w", cerr)
 		}
 	}
+	if q.listFilesStmt != nil {
+		if cerr := q.listFilesStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing listFilesStmt: %w", cerr)
+		}
+	}
 	if q.listUsersStmt != nil {
 		if cerr := q.listUsersStmt.Close(); cerr != nil {
 			err = fmt.Errorf("error closing listUsersStmt: %w", cerr)
+		}
+	}
+	if q.saveFileStmt != nil {
+		if cerr := q.saveFileStmt.Close(); cerr != nil {
+			err = fmt.Errorf("error closing saveFileStmt: %w", cerr)
 		}
 	}
 	return err
@@ -91,8 +115,11 @@ type Queries struct {
 	db             DBTX
 	tx             *sql.Tx
 	createUserStmt *sql.Stmt
+	getFileStmt    *sql.Stmt
 	getUserStmt    *sql.Stmt
+	listFilesStmt  *sql.Stmt
 	listUsersStmt  *sql.Stmt
+	saveFileStmt   *sql.Stmt
 }
 
 func (q *Queries) WithTx(tx *sql.Tx) *Queries {
@@ -100,7 +127,10 @@ func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 		db:             tx,
 		tx:             tx,
 		createUserStmt: q.createUserStmt,
+		getFileStmt:    q.getFileStmt,
 		getUserStmt:    q.getUserStmt,
+		listFilesStmt:  q.listFilesStmt,
 		listUsersStmt:  q.listUsersStmt,
+		saveFileStmt:   q.saveFileStmt,
 	}
 }
