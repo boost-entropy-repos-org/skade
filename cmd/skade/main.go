@@ -31,6 +31,7 @@ func main() {
 	//default:
 	//	panic("no storage")
 	//}
+	logger.Debug("starting server...")
 	engine := engine.NewAnalysisService(logger)
 	httpInteractor := server.NewHttpInteractor(engine)
 	httpInteractor.StartServer()
