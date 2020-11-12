@@ -1,7 +1,7 @@
 CREATE TABLE "users" (
       "id" bigserial PRIMARY KEY,
       "username" varchar NOT NULL,
-      "email" email NOT NULL,
+      "email" varchar NOT NULL,
       "created_at" timestamp DEFAULT (now())
 );
 
@@ -11,7 +11,7 @@ CREATE TABLE "files" (
       "filesize" int NOT NULL,
       "fileextension" varchar,
       "uploaded_at" timestamp DEFAULT (now()),
-      "uploaded_by" varchar
+      "uploaded_by" bigint
 );
 
 CREATE TABLE "Reports" (
