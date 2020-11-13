@@ -4,9 +4,11 @@ go 1.15
 
 require (
 	github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb
+	github.com/corpix/uarand v0.1.1 // indirect
 	//github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934
 	//github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934
 	github.com/gorilla/mux v1.8.0
+	github.com/icrowley/fake v0.0.0-20180203215853-4178557ae428
 	github.com/lib/pq v1.8.0
 	github.com/stretchr/testify v1.6.1
 	go.uber.org/zap v1.16.0
