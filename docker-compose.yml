@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   postgres:
-    container_name: skade-postgres
+    container_name: skadedb
     image: postgres:12.3-alpine
     env_file:
       - env/postgres.env
@@ -10,6 +10,9 @@ services:
       - type: volume
         source: postgres_data
         target: /var/lib/postgresql/data
+    ports:
+      - target: 5432
+        published: 5432
         
   skade:
     container_name: skade
