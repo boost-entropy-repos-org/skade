@@ -38,3 +38,8 @@ func RandomString(n int) string {
 func RandomEmail() string {
 	return fake.EmailAddress()
 }
+
+// RandomUsername returns a random 8 character long string
+func RandomUsername() string {
+	return RandomString(8)
+}

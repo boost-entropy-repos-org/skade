@@ -3,13 +3,15 @@ package db
 import (
 	"context"
 	"testing"
+
+	"github.com/Mindslave/skade/pkg/generate"
 	"github.com/stretchr/testify/require"
 )
 
 func TestCreateUser(t *testing.T) {
 	arg := CreateUserParams{
-		Username: "marius",
-		Email: "test@test.com",
+		Username: generate.RandomUsername(),
+		Email: generate.RandomEmail(),
 	}
 
 	user, err := testQueries.CreateUser(context.Background(), arg)
