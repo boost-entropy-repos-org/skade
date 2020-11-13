@@ -6,7 +6,7 @@ import (
 	"mime/multipart"
 	"os"
 
-	"github.com/Mindslave/parse-pe"
+	pefiles "github.com/Mindslave/parse-pe"
 )
 
 // the main 'scan' function, will basically be a wrapper around the other functionalities
@@ -19,12 +19,12 @@ func (a *analysisService) Scan(FileName string) (*Report, error) {
 		a.logger.Error("Could not open file:")
 	}
 
-	//make sure we close the file again once we are done
-	//defer suspiciousFile.Close()
+	// make sure we close the file again once we are done
+	// defer suspiciousFile.Close()
 
 	// then get all the Bytes from the file
 	// using susBytes because 'bytes' is libarry name
-	//susBytes, err = getBytesFromFile()
+	// susBytes, err = getBytesFromFile()
 	if err != nil {
 		a.logger.Error("Could not get raw bytes from file")
 	}
