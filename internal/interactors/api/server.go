@@ -16,6 +16,14 @@ func NewAPIServer(engine engine.AnalysisService) APIServer {
 		engine: engine,
 	}
 	router := gin.Default()
+
+	router.POST("/createUser", s.createUser)
 	s.router = router
 	return s
+} 
+
+func errorResponse(err error) gin.H {
+	return gin.H{
+		"error": err.Error(),
+	}
 }
