@@ -14,7 +14,8 @@ var (
 )
 
 type analysisService struct {
-	logger Logger
+	logger 	Logger
+	repo	Repository
 }
 
 type AnalysisService interface {
@@ -23,9 +24,10 @@ type AnalysisService interface {
 	ScanFile(file io.Reader) (*Report, error)
 }
 
-func NewAnalysisService(logger Logger) AnalysisService {
+func NewAnalysisService(logger Logger, repo Repository) AnalysisService {
 	return &analysisService{
 		logger,
+		repo,
 	}
 }
 

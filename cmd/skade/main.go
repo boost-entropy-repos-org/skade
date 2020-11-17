@@ -33,6 +33,7 @@ func main() {
 	if err != nil {
 		logger.Error("Cannot connect to Database")
 	}
+	logger.Debug("successfully connected to Database")
 	repoType := "postgres"
 	switch repoType {
 	case "postgres":
@@ -42,7 +43,7 @@ func main() {
 	}
 
 	logger.Debug("starting server...")
-	engine := engine.NewAnalysisService(logger)
+	engine := engine.NewAnalysisService(logger, repo)
 	httpInteractor := server.NewHttpInteractor(engine)
 	httpInteractor.StartServer()
 	//engine.Scan("testfiles/garbage.exe")

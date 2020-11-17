@@ -4,6 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+
+	"github.com/Mindslave/skade/internal/engine"
 )
 
 //Repo provides all functions to execute database queries and transactions
@@ -35,4 +37,14 @@ func (repo *Repo) execTx(ctx context.Context, fn func(*Queries) error) error {
 		return err
 	}
 	return tx.Commit()
+}
+
+//Find finds stuff
+func (repo *Repo) Find(sth string) (*engine.Report, error) {
+	return nil, nil
+}
+
+//Store stores stuff
+func (repo *Repo) Store(*engine.Report) error {
+	return nil
 }
