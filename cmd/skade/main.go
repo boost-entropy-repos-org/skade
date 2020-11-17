@@ -1,11 +1,20 @@
 package main
 
 import (
+	"database/sql"
+
+	_ "github.com/lib/pq"
+
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/Mindslave/skade/internal/interactors/http"
 	"github.com/Mindslave/skade/internal/log/zap"
 	"github.com/Mindslave/skade/internal/repositories/postgres"
 	//"net/http"
+)
+
+const (
+	dbDriver = "postgres"
+	dbSource = "postgresql://skadeuser:test@127.0.0.1:5432/skadedb?sslmode=disable"
 )
 
 func main() {
@@ -20,10 +29,14 @@ func main() {
 		panic("no logger")
 	}
 
+	conn, err := sql.Open(dbDriver, dbSource)
+	if err != nil {
+		logger.Error("Cannot connect to Database")
+	}
 	repoType := "postgres"
 	switch repoType {
 	case "postgres":
-		repo = db.Repo
+		repo = db.NewRepo(conn)
 	default:
 		panic("no repository")
 	}
