@@ -46,5 +46,4 @@ func main() {
 	engine := engine.NewAnalysisService(logger, repo)
 	httpInteractor := server.NewHttpInteractor(engine)
 	httpInteractor.StartServer()
-	//engine.Scan("testfiles/garbage.exe")
 }
