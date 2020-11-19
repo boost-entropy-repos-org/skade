@@ -19,9 +19,12 @@ type analysisService struct {
 }
 
 type AnalysisService interface {
+	//Application logic
 	Scan(fileName string) (*Report, error)
 	ScanBytes(susBytes []byte) (*Report, error)
 	ScanFile(file io.Reader) (*Report, error)
+	//Database Operations
+	CreateUser(username string, email string) error
 }
 
 func NewAnalysisService(logger Logger, repo Repository) AnalysisService {

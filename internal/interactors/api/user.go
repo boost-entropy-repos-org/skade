@@ -23,5 +23,7 @@ func (s *APIServer) createUser(ctx gin.Context) {
 		Username: req.Username,
 		Email: req.Email,
 	}
+
+	user, err := s.engine.CreateUser(arg)
 	
 }

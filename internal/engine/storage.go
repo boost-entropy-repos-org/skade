@@ -6,4 +6,5 @@ package engine
 type Repository interface {
 	Find(FileName string) (*Report, error)
 	Store(report *Report) error
+	CreateUser(username string, email string) error
 }
