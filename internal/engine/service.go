@@ -24,7 +24,10 @@ type AnalysisService interface {
 	ScanBytes(susBytes []byte) (*Report, error)
 	ScanFile(file io.Reader) (*Report, error)
 	//Database Operations
-	CreateUser(username string, email string) error
+	RegisterUser(username string, email string) error
+	ForgotPassword() error
+	ChangePassword()
+	IsValid()
 }
 
 func NewAnalysisService(logger Logger, repo Repository) AnalysisService {
