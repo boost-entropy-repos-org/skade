@@ -23,8 +23,13 @@ type AnalysisService interface {
 	Scan(fileName string) (*Report, error)
 	ScanBytes(susBytes []byte) (*Report, error)
 	ScanFile(file io.Reader) (*Report, error)
-	//Database Operations
+
+	//Yara specific functions
+	ApplyYaraRules(file io.Reader) error
+
+	// User management for web client
 	RegisterUser(username string, email string) error
+	LoginUser(username string, email string)
 	ForgotPassword() error
 	ChangePassword()
 	IsValid()
