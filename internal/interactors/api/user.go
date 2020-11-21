@@ -12,12 +12,6 @@ type createUserRequest struct {
 	Email    string `json:"email" binding:"required"`
 }
 
-type createUserParams struct {
-	Username string
-	Email	 string
-
-}
-
 func (s *APIServer) createUser(ctx *gin.Context) {
 	var req createUserRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {

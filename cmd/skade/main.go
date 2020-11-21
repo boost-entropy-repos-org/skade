@@ -8,9 +8,9 @@ import (
 
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/Mindslave/skade/internal/interactors/api"
-	"github.com/Mindslave/skade/internal/interactors/http"
+	//"github.com/Mindslave/skade/internal/interactors/http"
 	"github.com/Mindslave/skade/internal/log/zap"
-	"github.com/Mindslave/skade/internal/repositories/postgres"
+	"github.com/Mindslave/skade/internal/repositories/postgresql"
 	//"net/http"
 )
 
@@ -39,7 +39,7 @@ func main() {
 	repoType := "postgres"
 	switch repoType {
 	case "postgres":
-		repo = db.NewRepo(conn)
+		repo = postgresql.NewRepo()
 	default:
 		panic("no repository")
 	}
