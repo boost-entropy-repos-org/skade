@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	
-	models "github.com/Mindslave/skade/internal/entities"
+	"github.com/Mindslave/skade/internal/entities"
 )
 
 type createUserRequest struct {
@@ -19,7 +19,7 @@ func (s *APIServer) createUser(ctx *gin.Context) {
 		return
 	}
 
-	arg := models.DbCreateUserParams {
+	arg := entities.DbCreateUserParams {
 		Username: req.Username,
 		Email: req.Email,
 	}

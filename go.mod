@@ -12,6 +12,7 @@ require (
 	//github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934
 	github.com/gorilla/mux v1.8.0
 	github.com/icrowley/fake v0.0.0-20180203215853-4178557ae428
+	github.com/jmoiron/sqlx v1.2.0
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/lib/pq v1.8.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

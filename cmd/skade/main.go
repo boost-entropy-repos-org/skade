@@ -1,13 +1,14 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/Mindslave/skade/internal/interactors/api"
+
 	//"github.com/Mindslave/skade/internal/interactors/http"
 	"github.com/Mindslave/skade/internal/log/zap"
 	"github.com/Mindslave/skade/internal/repositories/postgresql"
@@ -31,7 +32,7 @@ func main() {
 		panic("no logger")
 	}
 
-	conn, err := sql.Open(dbDriver, dbSource)
+	conn, err := sqlx.Open(dbDriver, dbSource)
 	if err != nil {
 		logger.Error("Cannot connect to Database")
 	}
@@ -39,7 +40,7 @@ func main() {
 	repoType := "postgres"
 	switch repoType {
 	case "postgres":
-		repo = postgresql.NewRepo()
+		repo = postgresql.NewRepo(conn)
 	default:
 		panic("no repository")
 	}
