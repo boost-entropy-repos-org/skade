@@ -27,6 +27,11 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 	return s
 } 
 
+func (api *APIServer) Start(address string) error {
+	return api.router.Run()
+}
+
+
 func errorResponse(err error) gin.H {
 	return gin.H{
 		"error": err.Error(),

@@ -18,6 +18,7 @@ import (
 const (
 	dbDriver = "postgres"
 	dbSource = "postgresql://skadeuser:test@127.0.0.1:5432/skadedb?sslmode=disable"
+	serverAddress = "0.0.0.0:8080"
 )
 
 func main() {
@@ -49,5 +50,6 @@ func main() {
 	engine := engine.NewAnalysisService(logger, repo)
 	//httpInteractor := server.NewHttpInteractor(engine, logger, repo)
 	apiServer := api.NewAPIServer(engine, logger, repo)
+	apiServer.Start(serverAddress)
 	fmt.Println(apiServer)
 }
