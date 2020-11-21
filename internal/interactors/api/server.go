@@ -6,14 +6,19 @@ import (
 )
 
 type APIServer struct {
-	router *gin.Engine
-	engine engine.AnalysisService
+	router 	*gin.Engine
+	engine 	engine.AnalysisService
+	logger 	engine.Logger
+	repo	engine.Repository
 }
 
+
 // NewAPIServer returns a new APIServer object
-func NewAPIServer(engine engine.AnalysisService) APIServer {
+func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engine.Repository) APIServer {
 	s := APIServer{
 		engine: engine,
+		logger: logger,
+		repo: repo,
 	}
 	router := gin.Default()
 

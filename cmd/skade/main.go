@@ -2,10 +2,12 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 
 	"github.com/Mindslave/skade/internal/engine"
+	"github.com/Mindslave/skade/internal/interactors/api"
 	"github.com/Mindslave/skade/internal/interactors/http"
 	"github.com/Mindslave/skade/internal/log/zap"
 	"github.com/Mindslave/skade/internal/repositories/postgres"
@@ -44,6 +46,7 @@ func main() {
 
 	logger.Debug("starting server...")
 	engine := engine.NewAnalysisService(logger, repo)
-	httpInteractor := server.NewHttpInteractor(engine)
-	httpInteractor.StartServer()
+	//httpInteractor := server.NewHttpInteractor(engine, logger, repo)
+	apiServer := api.NewAPIServer(engine, logger, repo)
+	fmt.Println(apiServer)
 }
