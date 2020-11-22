@@ -13,7 +13,6 @@ func (api *APIServer) upload(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, fmt.Errorf("Failed to get the file: %w", err))
 		return
 	}
-	
 
-
+	ctx.JSON(http.StatusOK, fmt.Sprintf("file has been uploaded succesfully"))
 }
