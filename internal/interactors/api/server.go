@@ -22,6 +22,7 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 	}
 	router := gin.Default()
 
+	router.GET("/token", s.GetToken)
 	router.Use(s.authMiddleware)
 	router.POST("/createUser", s.createUser)
 	router.GET("/users/:id", s.getUser)
