@@ -22,12 +22,14 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 	}
 	router := gin.Default()
 
+	router.Use(s.authMiddleware)
 	router.POST("/createUser", s.createUser)
 	router.GET("/users/:id", s.getUser)
 	s.router = router
 	return s
 } 
 
+//Start starts the API Server
 func (api *APIServer) Start(address string) error {
 	return api.router.Run()
 }
