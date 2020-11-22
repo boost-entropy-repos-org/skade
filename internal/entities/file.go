@@ -1,6 +1,10 @@
 package entities
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type DbStoreFileParams struct {
 	ID			uuid.UUID
@@ -9,7 +13,8 @@ type DbStoreFileParams struct {
 }
 
 type File struct {
-	ID            uuid.UUID          `json:"id"`
-	Filename      string         `json:"filename"`
-	Filesize      int32          `json:"filesize"`
+	ID            uuid.UUID  `json:"id"`
+	Filename      string     `json:"filename"`
+	Filesize      int32      `json:"filesize"`
+	UploadedAt	  time.Time	 `json:"uploaded_at"`
 }
