@@ -1,22 +1,24 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE "users" (
-      "id" bigserial PRIMARY KEY,
+      "id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
       "username" varchar NOT NULL,
       "email" varchar NOT NULL,
       "created_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "files" (
-      "id" bigserial PRIMARY KEY,
+      "id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
       "filename" varchar NOT NULL,
       "filesize" int NOT NULL,
       "fileextension" varchar,
       "uploaded_at" timestamp DEFAULT (now()),
-      "uploaded_by" bigint
+      "uploaded_by" uuid
 );
 
 CREATE TABLE "reports" (
-      "id" bigserial PRIMARY KEY,
-      "file" bigint,
+      "id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+      "file" uuid,
       "malicious" boolean NOT NULL
 );
 

@@ -23,6 +23,7 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 	router := gin.Default()
 
 	router.POST("/createUser", s.createUser)
+	router.GET("/users/:id", s.getUser)
 	s.router = router
 	return s
 } 

@@ -1,9 +1,11 @@
 package api
 
 import (
+	"database/sql"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
-	
+
 	"github.com/Mindslave/skade/internal/entities"
 )
 
@@ -40,10 +42,21 @@ type getUserRequest struct {
 }
 
 
-func (s *APIServer) getUser(ctx gin.Context) {
+func (s *APIServer) getUser(ctx *gin.Context) {
 	var req getUserRequest
 	if err := ctx.ShouldBindUri(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
+
+	user, err := s.repo.GetUser(ctx, req.ID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			return
+		}
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+	ctx.JSON(http.StatusOK, user)
 }
