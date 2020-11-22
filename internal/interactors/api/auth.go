@@ -43,7 +43,7 @@ func (s *APIServer) authMiddleware(ctx *gin.Context) {
 	ctx.Next()
 }
 
-func (s* APIServer) GetToken(ctx *gin.Context) {
+func (s* APIServer) getToken(ctx *gin.Context) {
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	claims := token.Claims.(jwt.MapClaims)
