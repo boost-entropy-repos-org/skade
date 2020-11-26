@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/Mindslave/skade/internal/log/zap"
 )
@@ -17,8 +19,9 @@ func main() {
 	default:
 		panic("no logger")
 	}
-	engine := engine.NewAnalysisService(logger)
-	fileName := flag.String("File", "", "Name of the suspicious file")
-	flag.Parse()
-	engine.Scan(*fileName)
+	fmt.Println(logger)
+	//engine := engine.NewAnalysisService(logger)
+	//fileName := flag.String("File", "", "Name of the suspicious file")
+	//flag.Parse()
+	//engine.Scan(*fileName)
 }
