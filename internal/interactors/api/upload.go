@@ -21,5 +21,5 @@ func (api *APIServer) upload(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, fmt.Sprintf("file has been uploaded succesfully"))
+	ctx.JSON(http.StatusOK, fmt.Sprintf("file has been uploaded succesfully: %s", file.Filename))
 }

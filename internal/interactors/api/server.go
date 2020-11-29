@@ -26,6 +26,7 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 	router.Use(s.authMiddleware)
 	router.POST("/createUser", s.createUser)
 	router.GET("/users/:id", s.getUser)
+	router.POST("/upload", s.upload)
 	s.router = router
 	return s
 } 
