@@ -24,6 +24,7 @@ func (s *APIServer) createUser(ctx *gin.Context) {
 
 	arg := entities.DbCreateUserParams {
 		Username: req.Username,
+		HashedPassword: req.HashedPassword,
 		Email: req.Email,
 	}
 
