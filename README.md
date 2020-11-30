@@ -6,7 +6,6 @@ Im also trying to apply DDD principles to my best knowledges.
 
 Done:
 - [x] Find a structure for the project (hexagonal - DDD)
-- [x] Build a simple http frontend to upload potenially malicious files
 - [x] Building a simple Database schema
 
 
