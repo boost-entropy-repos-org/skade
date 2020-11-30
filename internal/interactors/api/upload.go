@@ -27,7 +27,7 @@ func (api *APIServer) upload(ctx *gin.Context) {
 		Filesize: file.Size,
 	}
 
-	err := api.repo.StoreFile(ctx, arg)
+	err = api.repo.StoreFile(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return

@@ -9,4 +9,5 @@ import (
 type Repository interface {
 	CreateUser(context.Context, entities.DbCreateUserParams) (entities.User, error)
 	GetUser(context.Context, int64) (entities.User, error)
+	StoreFile(context.Context, entities.DbStoreFileParams) (error)
 }

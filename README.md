@@ -11,8 +11,11 @@ Done:
 
 
 CurrentlyDoing:
-- [ ] Build a PE file parser (https://github.com/Mindslave/parse-pe)
+- Building an API to handle file uploads and users
+- Scanning uploaded files with yara rules
+
 
 ToDo:
-- [ ] Everything else
+- Build a Frontend
+- Implement an heuristics based approach of indentifying malware
 
