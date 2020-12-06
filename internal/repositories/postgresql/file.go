@@ -18,10 +18,11 @@ func (r* Repo) StoreFile(ctx context.Context, arg entities.DbStoreFileParams) (e
 	if err != nil {
 		return fmt.Errorf("error generating uuid: %w", err)
 	}
-	err = r.Get(&file, "INSERT INTO files VALUES($1, $2, $3, $4) RETURNING *", 
+	err = r.Get(&file, "INSERT INTO files VALUES($1, $2, $3, $4, $5) RETURNING *", 
 				uuid,
 				arg.Filename,
 				arg.Filesize,
+				arg.FileExtension,
 				time.Now())
 	if err != nil {
 		return fmt.Errorf("error creating user: %w", err)

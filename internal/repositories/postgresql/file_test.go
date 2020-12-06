@@ -13,6 +13,7 @@ func TestStoreFile(t *testing.T) {
 	arg := entities.DbStoreFileParams {
 		Filename: "testfile",
 		Filesize: 100,
+		FileExtension: "exe",
 	}
 
 	err := testrepo.StoreFile(context.Background(), arg)
