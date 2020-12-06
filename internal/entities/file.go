@@ -19,6 +19,7 @@ type File struct {
 	ID            uuid.UUID  `json:"id"`
 	Filename      string     `json:"filename"`
 	Filesize      int64      `json:"filesize"`
-	FileExtension string	 `json:"file_extension"`
-	UploadedAt	  time.Time	 `json:"uploaded_at" db:"upload_at"`
+	FileExtension string	 `json:"file_extension" db:"fileextension"`
+	UploadedAt	  time.Time	 `json:"uploaded_at" db:"uploaded_at"`
+	UploadedBy	  uuid.UUID	 `json:"uploaded_by" db:"uploaded_by"`
 }

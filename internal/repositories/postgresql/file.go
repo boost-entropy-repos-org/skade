@@ -25,7 +25,7 @@ func (r* Repo) StoreFile(ctx context.Context, arg entities.DbStoreFileParams) (e
 				arg.FileExtension,
 				time.Now())
 	if err != nil {
-		return fmt.Errorf("error creating user: %w", err)
+		return fmt.Errorf("error storing file: %w", err)
 	}
 	return nil
 }
