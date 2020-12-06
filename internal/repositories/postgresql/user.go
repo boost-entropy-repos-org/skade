@@ -20,7 +20,7 @@ func (r *Repo) CreateUser(ctx context.Context, arg entities.DbCreateUserParams) 
 	err = r.Get(&u, "INSERT INTO users VALUES($1, $2, $3, $4, $5) RETURNING *", 
 				uuid,
 				arg.Username,
-				arg.hashed_password,
+				arg.HashedPassword,
 				arg.Email,
 				time.Now())
 	if err != nil {
