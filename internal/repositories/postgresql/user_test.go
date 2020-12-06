@@ -16,6 +16,11 @@ func TestCreateUser(t *testing.T) {
 		HashedPassword: "abc",
 	}
 
-	_, err := testrepo.CreateUser(context.Background(), arg)
+	user, err := testrepo.CreateUser(context.Background(), arg)
 	require.NoError(t, err)
+	require.NotEmpty(t, user)
+
+	require.Equal(t, user.Username, arg.Username)
+	require.Equal(t, user.Email, arg.Email)
+	require.Equal(t, user.HashedPassword, arg.HashedPassword)
 }
