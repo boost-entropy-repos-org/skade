@@ -11,7 +11,7 @@ test:
 	go test -v -cover ./...
 
 migrateup:
-	 migrate -path db/migrations -database "postgresql://skadeuser:test@127.0.0.1:5432/skadedb?sslmode=disable" -verbose up
+	 migrate -path db/migrations -database "postgresql://skadeuser:skadepw@127.0.0.1:5432/skadedb?sslmode=disable" -verbose up
 
 migratedown:
-	 migrate -path db/migrations -database "postgresql://skadeuser:test@127.0.0.1:5432/skadedb?sslmode=disable" -verbose down
+	 migrate -path db/migrations -database "postgresql://skadeuser:skadepw@127.0.0.1:5432/skadedb?sslmode=disable" -verbose down
