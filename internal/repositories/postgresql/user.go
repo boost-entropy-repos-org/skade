@@ -20,8 +20,8 @@ func (r *Repo) CreateUser(ctx context.Context, arg entities.DbCreateUserParams) 
 	err = r.Get(&u, "INSERT INTO users VALUES($1, $2, $3, $4, $5) RETURNING *", 
 				uuid,
 				arg.Username,
-				arg.hashed_password,
 				arg.Email,
+				arg.HashedPassword,
 				time.Now())
 	if err != nil {
 		return entities.User{}, fmt.Errorf("error creating user: %w", err)
