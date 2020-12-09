@@ -7,14 +7,14 @@ Im also trying to apply DDD principles to my best knowledges.
 Done:
 - [x] Find a structure for the project (hexagonal - DDD)
 - [x] Building a simple Database schema
+- [x] Building an API to handle file uploads and users
 
 
 CurrentlyDoing:
-- Building an API to handle file uploads and users
 - Scanning uploaded files with yara rules
+- Build a Frontend
 
 
 ToDo:
-- Build a Frontend
 - Implement an heuristics based approach of indentifying malware
 
