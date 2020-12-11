@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import HomePage from './pages/home';
 import AdminPage from './pages/admin';
+import SignIn from './pages/login';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route path="/admin" component={AdminPage}/>
+            <Route path="/login" component={SignIn}/>
           </Switch>
         </Router>
       </div>
