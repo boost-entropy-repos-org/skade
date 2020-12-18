@@ -4,6 +4,7 @@ CREATE TABLE "users" (
       "id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
       "username" varchar NOT NULL,
       "email" varchar NOT NULL,
+      "hashed_password" varchar NOT NULL,
       "created_at" timestamp DEFAULT (now())
 );
 
