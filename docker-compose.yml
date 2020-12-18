@@ -27,14 +27,12 @@ services:
 
   skade-frontend:
     container_name: skade-frontend
-    image: node:13
     build:
       context: ./frontend
       dockerfile: ./Docker/Dockerfile
     ports: 
-      - target: 3000
-        published: 3000
-    command: npm start
+      - target: 80
+        published: 80
     stdin_open: true
     depends_on: 
       - skade-api

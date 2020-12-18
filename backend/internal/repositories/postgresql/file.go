@@ -12,19 +12,20 @@ import (
 
 
 //StoreFile is used to store files uploaded to skate
-func (r* Repo) StoreFile(ctx context.Context, arg entities.DbStoreFileParams) (entities.File, error) {
+func (r* Repo) StoreFile(ctx context.Context, arg entities.DbStoreFileParams) (error) {
 	var file entities.File
 	uuid, err := uuid.NewUUID()
 	if err != nil {
-		return entities.File{}, fmt.Errorf("error generating uuid: %w", err)
+		return fmt.Errorf("error generating uuid: %w", err)
 	}
-	err = r.Get(&file, "INSERT INTO files VALUES($1, $2, $3, $4) RETURNING *", 
+	err = r.Get(&file, "INSERT INTO files VALUES($1, $2, $3, $4, $5) RETURNING *", 
 				uuid,
 				arg.Filename,
 				arg.Filesize,
+				arg.FileExtension,
 				time.Now())
 	if err != nil {
-		return entities.File{}, fmt.Errorf("error creating user: %w", err)
+		return fmt.Errorf("error storing file: %w", err)
 	}
-	return file, nil
+	return nil
 }

@@ -7,9 +7,9 @@ import (
 
 //DbCreateUserParams are all params needed to create a new user
 type DbCreateUserParams struct {
-	Username		string
-	HashedPassword 	string
-	Email			string
+	Username		string	`json:"username" db:"username"`
+	HashedPassword 	string	`json:"hashed_password" db:"hashed_password"`
+	Email			string	`json:"email" db:"email"`
 }
 
 //User is the User Type for the entire skade application
