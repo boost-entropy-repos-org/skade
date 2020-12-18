@@ -1,8 +1,8 @@
 version: "3.3"
 
 services:
-  postgres:
-    container_name: skadedb
+  skade-db:
+    container_name: skade-db
     image: postgres:12.3-alpine
     env_file:
       - env/postgres.env
@@ -14,17 +14,28 @@ services:
       - target: 5432
         published: 5432
         
-  skade:
-    container_name: skade
+  skade-api:
+    container_name: skade-api
     build:
-      context: ./
+      context: ./backend
       dockerfile: ./Docker/Dockerfile
     depends_on:
-      - postgres
+      - skade-db
     ports:
       - target: 8080
         published: 8080
 
+  skade-frontend:
+    container_name: skade-frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Docker/Dockerfile
+    ports: 
+      - target: 80
+        published: 80
+    stdin_open: true
+    depends_on: 
+      - skade-api
 
 volumes:
   postgres_data:

@@ -1,5 +1,0 @@
-package yara
-
-import (
-
-)
