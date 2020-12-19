@@ -24,6 +24,10 @@ export const LoginForm: React.FC<Props> = ({ onSubmit }) => {
             <Form>
                 <div>
                 <TextField 
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
                     placeholder="Username"
                     name="username" 
                     value={values.username} 
@@ -33,6 +37,11 @@ export const LoginForm: React.FC<Props> = ({ onSubmit }) => {
                 </div>
                 <div>
                 <TextField 
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    type="password"
+                    fullWidth
                     placeholder="Password"
                     name="password" 
                     value={values.password} 
@@ -40,11 +49,7 @@ export const LoginForm: React.FC<Props> = ({ onSubmit }) => {
                     onBlur={handleBlur}
                 />
                 </div>
-                <Button variant="contained" type="submit">Submit</Button>
-                <pre>
-                    {JSON.stringify(values)}
-                </pre>
-
+                <Button color="primary" variant="contained" type="submit">Submit</Button>
             </Form>
         )}
         </Formik>
