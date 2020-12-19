@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-node_modules
-.idea
-postgres.env
-=======
 node_modules
 .idea
 postgres.env
 *.env
->>>>>>> main
 .vscode

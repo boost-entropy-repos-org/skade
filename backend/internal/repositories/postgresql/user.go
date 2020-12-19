@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/Mindslave/skade/backend/internal/entities"
+	"github.com/Mindslave/skade/internal/entities"
 )
 
 //CreateUser is the Endpoint used to create new users
