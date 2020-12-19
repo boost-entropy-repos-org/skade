@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import HomePage from './pages/home';
-import AdminPage from './pages/admin';
+import HomePage from './pages/main/home';
+import AdminPage from './pages/admin/admin';
 import Login from './pages/auth/login';
 import SignUp from './pages/signup';
 
