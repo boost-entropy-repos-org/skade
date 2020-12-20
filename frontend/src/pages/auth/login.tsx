@@ -33,7 +33,7 @@ const Login = () => {
                     onSubmit={ async ({ username, password }) => {
                         console.log(username, password)
                         const loginRequest = await fetch("http://localhost:8080/token", {
-                            method: "POST", 
+                            method: "GET", 
                         })
                         const loginJson = await loginRequest.json();
                         console.log(loginJson)

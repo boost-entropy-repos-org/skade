@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/Mindslave/skade/internal/engine"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 type APIServer struct {
@@ -21,6 +22,11 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 		repo: repo,
 	}
 	router := gin.Default()
+	config := cors.DefaultConfig()
+
+	config.AllowOrigins = []string{"http://localhost:3000"}
+
+	router.Use(cors.New(config))
 
 	router.GET("/token", s.getToken)
 	router.POST("/token", s.getToken)

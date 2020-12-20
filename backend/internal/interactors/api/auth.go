@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -58,5 +59,6 @@ func (s* APIServer) getToken(ctx *gin.Context) {
 		return
 	}
 
-	fmt.Fprintf(ctx.Writer, tokenString)
+	//fmt.Fprintf(ctx.Writer, tokenString)
+	ctx.JSON(http.StatusOK, tokenString)
 }
