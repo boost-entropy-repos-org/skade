@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
+
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
@@ -12,11 +14,11 @@ import (
 
 var superSecretTest = []byte("superSecret")
 
-func (s *APIServer) authMiddleware(ctx *gin.Context) {
-	s.logger.Debug("authorizing request")
+func (api *APIServer) authMiddleware(ctx *gin.Context) {
+	api.logger.Debug("authorizing request")
 
 	if ctx.Request.Header["Token"] == nil {
-		s.logger.Debug("JWT missing")
+		api.logger.Debug("JWT missing")
 		fmt.Fprintf(ctx.Writer, "Not Authorized")
 		ctx.Abort()
 	}
@@ -28,14 +30,14 @@ func (s *APIServer) authMiddleware(ctx *gin.Context) {
 		return superSecretTest, nil
 	})
 	if err != nil {
-		s.logger.Debug("JWT Parsing failed, not a valid JWT token")
+		api.logger.Debug("JWT Parsing failed, not a valid JWT token")
 		fmt.Fprintf(ctx.Writer, "Not Authorized %w", err)
 		ctx.Abort()
 		return
 	}
 
 	if !token.Valid {
-		s.logger.Debug("JWT Validation failed")
+		api.logger.Debug("JWT Validation failed")
 		fmt.Fprintf(ctx.Writer, "Not Authorized")
 		ctx.Abort()
 		return
@@ -51,12 +53,13 @@ var authData struct {
 }
 
 
-func (s *APIServer) authenticate(ctx *gin.Context) {
-	s.logger.Debug("received authentication request")
+func (api *APIServer) authenticate(ctx *gin.Context) {
+	api.logger.Debug("received authentication request")
 
+	//expect a json request body
 	if ctx.Request.Header.Get("Content-Type") != "application/json" {
 		err := fmt.Errorf("bad Content-Type")
-		s.logger.Error("received auth request with invalid Content-Type header")
+		api.logger.Error("received auth request with invalid Content-Type header")
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
@@ -65,13 +68,22 @@ func (s *APIServer) authenticate(ctx *gin.Context) {
 
 	if err != nil {
 		err := fmt.Errorf("empty request body")
-		s.logger.Debug("received auth request with empty body")
+		api.logger.Debug("received auth request with empty body")
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
+	}
+
+	//Hash the password
+	hash, err := bcrypt.GenerateFromPassword([]byte(authData.Password), bcrypt.DefaultCost)
+	if err != nil {
+		api.logger.Error("Failed to hash the Password")
+		//what could we possibly do?
+		panic(1)
 	} else {
-		ctx.JSON(http.StatusOK, authData)
+		ctx.JSON(http.StatusOK, hash)
 		return
 	}
+
 }
 
 
