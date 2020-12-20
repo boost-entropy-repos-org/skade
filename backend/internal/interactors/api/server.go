@@ -28,12 +28,15 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 
 	router.Use(cors.New(config))
 
-	router.GET("/token", s.getToken)
-	router.POST("/token", s.getToken)
-	router.Use(s.authMiddleware)
-	router.POST("/createUser", s.createUser)
-	router.GET("/users/:id", s.getUser)
-	router.POST("/upload", s.upload)
+	v1 := router.Group("/api/v1/") 
+	{
+		v1.GET("/auth", s.authenticate)
+		v1.POST("/auth", s.authenticate)
+		v1.Use(s.authMiddleware)
+		v1.POST("/createUser", s.createUser)
+		v1.GET("/users/:id", s.getUser)
+		v1.POST("/upload", s.upload)
+	}
 	s.router = router
 	return s
 } 
