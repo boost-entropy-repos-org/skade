@@ -32,7 +32,11 @@ const Login = () => {
                 <LoginForm
                     onSubmit={ async ({ username, password }) => {
                         console.log(username, password)
-                        const loginRequest = await fetch("/api/token", {method: "POST", body: JSON.stringify({username: username, password: password})})
+                        const loginRequest = await fetch("http://localhost:8080/token", {
+                            method: "POST", 
+                        })
+                        const loginJson = await loginRequest.json();
+                        console.log(loginJson)
                     }}
                 />
             </Paper>

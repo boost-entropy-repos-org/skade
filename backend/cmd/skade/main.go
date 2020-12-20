@@ -18,7 +18,7 @@ import (
 const (
 	dbDriver = "postgres"
 	dbSource = "postgresql://skadeuser:test@127.0.0.1:5432/skadedb?sslmode=disable"
-	serverAddress = "0.0.0.0:8080"
+	serverAddress = "127.0.0.1:8080"
 )
 
 func main() {

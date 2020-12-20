@@ -4,7 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import HomePage from './pages/main/home';
-import AdminPage from './pages/admin/admin';
 import Login from './pages/auth/login';
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage}/>
-            <Route path="/admin" component={AdminPage}/>
             <Route path="/login" component={Login}/>
           </Switch>
         </Router>
