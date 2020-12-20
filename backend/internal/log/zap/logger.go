@@ -1,7 +1,7 @@
 package zaplogger
 
 import (
-	"github.com/Mindslave/skade/internal/engine"
+	"github.com/Mindslave/skade/backend/internal/engine"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

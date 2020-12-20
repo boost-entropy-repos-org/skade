@@ -6,12 +6,12 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 
-	"github.com/Mindslave/skade/internal/engine"
-	"github.com/Mindslave/skade/internal/interactors/api"
+	"github.com/Mindslave/skade/backend/internal/engine"
+	"github.com/Mindslave/skade/backend/internal/interactors/api"
 
 	//"github.com/Mindslave/skade/internal/interactors/http"
-	"github.com/Mindslave/skade/internal/log/zap"
-	"github.com/Mindslave/skade/internal/repositories/postgresql"
+	"github.com/Mindslave/skade/backend/internal/log/zap"
+	"github.com/Mindslave/skade/backend/internal/repositories/postgresql"
 	//"net/http"
 )
 

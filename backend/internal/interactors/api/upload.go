@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/Mindslave/skade/internal/entities"
+	"github.com/Mindslave/skade/backend/internal/entities"
 	"github.com/gin-gonic/gin"
 )
 

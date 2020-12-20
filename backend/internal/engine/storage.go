@@ -2,7 +2,7 @@ package engine
 
 import (
 	"context"
-	"github.com/Mindslave/skade/internal/entities"
+	"github.com/Mindslave/skade/backend/internal/entities"
 )
 
 //Repository is the interface that our storage solution has to fullfil

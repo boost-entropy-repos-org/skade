@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/Mindslave/skade/internal/engine"
-	"github.com/Mindslave/skade/internal/log/zap"
+	"github.com/Mindslave/skade/backend/internal/engine"
+	"github.com/Mindslave/skade/backend/internal/log/zap"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Mindslave/skade/internal/entities"
+	"github.com/Mindslave/skade/backend/internal/entities"
 )
 
 type createUserRequest struct {

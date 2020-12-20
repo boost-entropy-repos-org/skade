@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/Mindslave/skade/internal/engine"
+	"github.com/Mindslave/skade/backend/internal/engine"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 )

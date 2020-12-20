@@ -4,7 +4,7 @@ import(
 	"testing"
 	"context"
 
-	"github.com/Mindslave/skade/internal/entities"
+	"github.com/Mindslave/skade/backend/internal/entities"
 	
 	"github.com/stretchr/testify/require"
 )
