@@ -15,7 +15,7 @@ type createUserRequest struct {
 	Email    		string `json:"email" binding:"required"`
 }
 
-func (s *APIServer) createUser(ctx *gin.Context) {
+func (api *APIServer) createUser(ctx *gin.Context) {
 	var req createUserRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
@@ -28,14 +28,13 @@ func (s *APIServer) createUser(ctx *gin.Context) {
 		Email: req.Email,
 	}
 
-	user, err := s.repo.CreateUser(ctx, arg)
+	user, err := api.repo.CreateUser(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
 
 	ctx.JSON(http.StatusOK, user)
-	
 }
 
 
@@ -44,14 +43,14 @@ type getUserRequest struct {
 }
 
 
-func (s *APIServer) getUser(ctx *gin.Context) {
+func (api *APIServer) getUser(ctx *gin.Context) {
 	var req getUserRequest
 	if err := ctx.ShouldBindUri(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
 
-	user, err := s.repo.GetUser(ctx, req.ID)
+	user, err := api.repo.GetUser(ctx, req.ID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			ctx.JSON(http.StatusNotFound, errorResponse(err))
