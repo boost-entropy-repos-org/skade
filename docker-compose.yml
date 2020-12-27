@@ -17,8 +17,8 @@ services:
   skade-api:
     container_name: skade-api
     build:
-      context: ./backend
-      dockerfile: ./Docker/Dockerfile
+      context: ./
+      dockerfile: ./backend/Docker/Dockerfile
     depends_on:
       - skade-db
     ports:

@@ -9,7 +9,7 @@ COPY go.sum .
 
 RUN go mod download
 
-COPY . .
+COPY backend .
 
 EXPOSE 8080
 RUN GOOS=linux GOARCH=amd64 go build -o main cmd/skade/main.go

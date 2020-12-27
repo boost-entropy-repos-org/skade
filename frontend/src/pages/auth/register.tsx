@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LoginForm } from './components/loginform'
+import { RegisterForm } from './components/registerform'
 import { Grid, Paper, Typography, Avatar, makeStyles } from '@material-ui/core'
 import LockIcon from '@material-ui/icons/Lock'
 
@@ -18,7 +18,7 @@ const styles = makeStyles((theme) => ({
 }));
 
 
-const Login = () => {
+const Register = () => {
     const classes = styles()
     return (
         <Grid container justify="center" className={classes.gridStyles}>
@@ -29,11 +29,11 @@ const Login = () => {
                 <Typography component="h1" variant="h5">
                     Skade Login
                 </Typography>
-                <LoginForm
-                    onSubmit={ async ({ username, password }) => {
-                        console.log(username, password)
-                        const loginRequest = await fetch("http://localhost:8080/token", {
-                            method: "GET", 
+                <RegisterForm
+                    onSubmit={ async ({ email, username, password, repeatpw }) => {
+                        console.log(email, username, password, repeatpw)
+                        const loginRequest = await fetch("http://localhost:8080/createUser", {
+                            method: "POST", 
                         })
                         const loginJson = await loginRequest.json();
                         console.log(loginJson)
@@ -44,4 +44,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register
