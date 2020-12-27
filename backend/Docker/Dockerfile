@@ -9,8 +9,9 @@ COPY go.sum .
 
 RUN go mod download
 
-COPY backend .
+COPY backend backend
+
 
 EXPOSE 8080
-RUN GOOS=linux GOARCH=amd64 go build -o main cmd/skade/main.go
+RUN GOOS=linux GOARCH=amd64 go build -o main backend/cmd/skade/main.go
 CMD ["/app/main"]

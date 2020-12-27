@@ -95,7 +95,7 @@ func (api *APIServer) authenticate(ctx *gin.Context) {
 
 
 
-func (s* APIServer) getToken(ctx *gin.Context) {
+func (api* APIServer) getToken(ctx *gin.Context) {
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	claims := token.Claims.(jwt.MapClaims)

@@ -32,7 +32,7 @@ const Register = () => {
                 <RegisterForm
                     onSubmit={ async ({ email, username, password, repeatpw }) => {
                         console.log(email, username, password, repeatpw)
-                        const loginRequest = await fetch("http://localhost:8080/createUser", {
+                        const loginRequest = await fetch("http://localhost:8080/api/v1/createUser/", {
                             method: "POST", 
                         })
                         const loginJson = await loginRequest.json();

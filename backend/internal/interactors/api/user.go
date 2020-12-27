@@ -2,17 +2,21 @@ package api
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/Mindslave/skade/backend/internal/entities"
+
+	"github.com/Mindslave/skade/backend/pkg/credentials"
 )
 
 type createUserRequest struct {
-	Username 		string `json:"username" binding:"required"`
-	HashedPassword 	string `json:"hashed_password" binding:"required"`
-	Email    		string `json:"email" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+	RepeatPw string `json:"repeatpw" binding:"required"`
 }
 
 func (api *APIServer) createUser(ctx *gin.Context) {
@@ -22,10 +26,15 @@ func (api *APIServer) createUser(ctx *gin.Context) {
 		return
 	}
 
-	arg := entities.DbCreateUserParams {
-		Username: req.Username,
-		HashedPassword: req.HashedPassword,
-		Email: req.Email,
+	hashedPassword, err := credentials.CreateHash(req.Password)
+	if err != nil {
+		fmt.Errorf("something went wrong: %s", err)
+	}
+
+	arg := entities.DbCreateUserParams{
+		Username:       req.Username,
+		HashedPassword: hashedPassword,
+		Email:          req.Email,
 	}
 
 	user, err := api.repo.CreateUser(ctx, arg)
@@ -37,11 +46,9 @@ func (api *APIServer) createUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, user)
 }
 
-
 type getUserRequest struct {
 	ID int64 `uri:"id" binding:"required,min=1"`
 }
-
 
 func (api *APIServer) getUser(ctx *gin.Context) {
 	var req getUserRequest

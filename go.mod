@@ -1,4 +1,4 @@
-module github.com/Mindslave/skade/backend
+module github.com/Mindslave/skade
 
 go 1.15
 
