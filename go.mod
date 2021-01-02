@@ -3,7 +3,6 @@ module github.com/Mindslave/skade
 go 1.15
 
 require (
-	github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb
 	github.com/corpix/uarand v0.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-contrib/cors v1.3.1
@@ -11,8 +10,6 @@ require (
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/google/uuid v1.1.2
-	//github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934
-	//github.com/Mindslave/parse-pe v0.0.0-20201109091318-3bca20a3f934
 	github.com/gorilla/mux v1.8.0
 	github.com/icrowley/fake v0.0.0-20180203215853-4178557ae428
 	github.com/jmoiron/sqlx v1.2.0

@@ -16,19 +16,19 @@ type APIServer struct {
 
 // NewAPIServer returns a new APIServer object
 func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engine.Repository) APIServer {
+	router := gin.Default()
+
 	api := APIServer{
+		router: router,
 		engine: engine,
 		logger: logger,
 		repo: repo,
 	}
-	router := gin.Default()
-	config := cors.DefaultConfig()
 
-	config.AllowOrigins = []string{"*"}
 
-	router.Use(cors.New(config))
+	api.router.Use(cors.Default())
 
-	v1 := router.Group("/api/v1") 
+	v1 := api.router.Group("/api/v1") 
 	{
 		v1.GET("/auth", api.authenticate)
 		v1.POST("/auth", api.authenticate)
@@ -37,12 +37,13 @@ func NewAPIServer(engine engine.AnalysisService, logger engine.Logger, repo engi
 		v1.GET("/users/:id", api.getUser)
 		v1.POST("/upload", api.upload)
 	}
-	api.router = router
+
 	return api
 } 
 
 //Start starts the API Server
 func (api *APIServer) Start(address string) error {
+	api.router.Use(cors.Default())
 	return api.router.Run()
 }
 

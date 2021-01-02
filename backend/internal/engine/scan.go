@@ -1,12 +1,9 @@
 package engine
 
 import (
-	"fmt"
 	"io"
 	"mime/multipart"
 	"os"
-
-	pefiles "github.com/Mindslave/parse-pe"
 )
 
 // the main 'scan' function, will basically be a wrapper around the other functionalities
@@ -38,21 +35,9 @@ func (a *analysisService) ScanBytes(susBytes []byte) (*Report, error) {
 }
 
 func (a *analysisService) ScanFile(file io.Reader) (*Report, error) {
-	susPeFile, err := pefiles.NewPEFile("malware.exe", file)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(susPeFile.DosHeader.Data.E_magic)
-	report := new(Report)
-	return report, nil
+	return nil, nil
 }
 
 func (a *analysisService) ScanFileUpload(file multipart.File) (*Report, error) {
-	susPeFile, err := pefiles.NewPEFile("malware.exe", file)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(susPeFile.DosHeader.Data.E_magic)
-	report := new(Report)
-	return report, nil
+	return nil, nil
 }

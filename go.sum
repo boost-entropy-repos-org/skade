@@ -6,6 +6,8 @@ github.com/Masterminds/semver v1.4.2/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF0
 github.com/Masterminds/vcs v1.13.0/go.mod h1:N09YCmOQr6RLxC6UNHzuVwAdodYbbnycGHSmwVJjcKA=
 github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb h1:5h7KPiUqTkowVymcE8UVZr1Em08fHrsx4OVZnLaykrc=
 github.com/Mindslave/parse-pe v0.0.0-20201109093802-11fb7efaabdb/go.mod h1:/y7COm2H2bNMW3qdji60g+ONuhcF53McYJjKxMT5Oe4=
+github.com/Mindslave/parse-pe v0.0.0-20201109150501-ca81004c1615 h1:vYRpFiyZuqPwqYWr0Aa69VJvdzjxR79b/HUCROQOy9k=
+github.com/Mindslave/parse-pe v0.0.0-20201109150501-ca81004c1615/go.mod h1:/y7COm2H2bNMW3qdji60g+ONuhcF53McYJjKxMT5Oe4=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/codegangsta/cli v1.20.0/go.mod h1:/qJNoX69yVSKu5o4jLyXAENLRyk1uhi7zkbQ3slBdOA=
